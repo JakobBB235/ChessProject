@@ -12,6 +12,70 @@ namespace ChessProject
 {
     public partial class Form1 : Form
     {
+        private int count = 0;
+        private Button firstClick;
+        private List<String> possibleMoves;
+        private String[,] chessBoard = new String[8,8];
+
+        private void CreateChessBoard()
+        {
+            char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+            for(int i = 0; i < 8; i++)
+            {
+                for (int k = 0; k < 8; k++)
+                {
+                    chessBoard[i, k] = Convert.ToString(letters[i] + k);
+                }
+            }
+        }
+
+        private void MovePiece(Button b)
+        {
+            if (firstClick == null) { 
+                firstClick = b;
+                possibleMoves = FindPossibleMoves(b);
+            }
+            else if (possibleMoves.Contains(b.Name)){ 
+                b.Text = firstClick.Text;
+                firstClick = null;
+                possibleMoves = null;
+            }
+        }
+
+        private List<String> FindPossibleMoves(Button b)
+        {
+            String[] piece = b.Text.Split(' ');
+            String pieceType = piece[1];
+            String currentPosition = b.Name;
+
+            List<String> possibleMoves = new List<String>();
+            if (pieceType == "pawn")
+            {
+
+            }
+            else if(pieceType == "rook")
+            {
+
+            }
+            else if (pieceType == "knight")
+            {
+
+            }
+            else if (pieceType == "bishop")
+            {
+
+            }
+            else if (pieceType == "king")
+            {
+
+            }
+            else if (pieceType == "queen")
+            {
+
+            }
+            return possibleMoves;
+        }
+
         public Form1()
         {
             InitializeComponent();
@@ -19,7 +83,7 @@ namespace ChessProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void A1_Click(object sender, EventArgs e)

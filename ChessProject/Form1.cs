@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChessProject.Pieces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,25 +16,28 @@ namespace ChessProject
         private int count = 0;
         private Button firstClick;
         private List<String> possibleMoves;
-        private String[,] chessBoard = new String[8,8];
+        private List<KeyValuePair<String, Piece>> occupiedPositions = new List<KeyValuePair<string, Piece>>();
 
-        private void CreateChessBoard()
-        {
-            char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
-            for(int i = 0; i < 8; i++)
-            {
-                for (int k = 0; k < 8; k++)
-                {
-                    chessBoard[i, k] = Convert.ToString(letters[i] + k);
-                }
-            }
-        }
+        
+        //private String[,] chessBoard = new String[8,8];
+
+        //private void CreateChessBoard()
+        //{
+        //    char[] letters = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H' };
+        //    for(int i = 0; i < 8; i++)
+        //    {
+        //        for (int k = 0; k < 8; k++)
+        //        {
+        //            chessBoard[i, k] = Convert.ToString(letters[i] + k);
+        //        }
+        //    }
+        //}
 
         private void MovePiece(Button b)
         {
             if (firstClick == null) { 
                 firstClick = b;
-                possibleMoves = FindPossibleMoves(b);
+                //possibleMoves = FindPossibleMoves(b);
             }
             else if (possibleMoves.Contains(b.Name)){ 
                 b.Text = firstClick.Text;
@@ -42,39 +46,44 @@ namespace ChessProject
             }
         }
 
-        private List<String> FindPossibleMoves(Button b)
-        {
-            String[] piece = b.Text.Split(' ');
-            String pieceType = piece[1];
-            String currentPosition = b.Name;
+        //private List<String> FindPossibleMoves(Button b)
+        //{
+        //    String[] piece = b.Text.Split(' ');
+        //    String pieceType = piece[1];
+        //    String currentPosition = b.Name;
 
-            List<String> possibleMoves = new List<String>();
-            if (pieceType == "pawn")
-            {
+        //    List<String> possibleMoves = new List<String>();
+        //    if (pieceType == "pawn")
+        //    {
+        //        int[,] offsets = {
+        //            {0, 1},
+        //            {-1, 1},
+        //            {1, 1},
+        //            {0, 2}
+        //        };
+        //    }
+        //    else if(pieceType == "rook")
+        //    {
 
-            }
-            else if(pieceType == "rook")
-            {
+        //    }
+        //    else if (pieceType == "knight")
+        //    {
 
-            }
-            else if (pieceType == "knight")
-            {
+        //    }
+        //    else if (pieceType == "bishop")
+        //    {
 
-            }
-            else if (pieceType == "bishop")
-            {
+        //    }
+        //    else if (pieceType == "king")
+        //    {
 
-            }
-            else if (pieceType == "king")
-            {
+        //    }
+        //    else if (pieceType == "queen")
+        //    {
 
-            }
-            else if (pieceType == "queen")
-            {
-
-            }
-            return possibleMoves;
-        }
+        //    }
+        //    return possibleMoves;
+        //}
 
         public Form1()
         {

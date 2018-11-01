@@ -92,6 +92,7 @@
             this.H3 = new System.Windows.Forms.Button();
             this.H2 = new System.Windows.Forms.Button();
             this.H1 = new System.Windows.Forms.Button();
+            this.turnbox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // A1
@@ -702,11 +703,20 @@
             this.H1.UseVisualStyleBackColor = true;
             this.H1.Click += new System.EventHandler(this.H1_Click);
             // 
+            // turnbox
+            // 
+            this.turnbox.Location = new System.Drawing.Point(645, 257);
+            this.turnbox.Name = "turnbox";
+            this.turnbox.Size = new System.Drawing.Size(101, 22);
+            this.turnbox.TabIndex = 64;
+            this.turnbox.Text = "White Turn";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 572);
+            this.Controls.Add(this.turnbox);
             this.Controls.Add(this.H8);
             this.Controls.Add(this.H7);
             this.Controls.Add(this.H6);
@@ -775,6 +785,7 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -844,6 +855,7 @@
         private System.Windows.Forms.Button H3;
         private System.Windows.Forms.Button H2;
         private System.Windows.Forms.Button H1;
+        private System.Windows.Forms.TextBox turnbox;
     }
 }
 

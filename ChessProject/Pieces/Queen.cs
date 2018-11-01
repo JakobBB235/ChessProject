@@ -8,7 +8,11 @@ namespace ChessProject.Pieces
 {
     class Queen : Piece
     {
-        public override List<string> FindPossibleMoves()
+        public Queen(string color) : base(color)
+        {
+        }
+
+        public override List<string> FindPossibleMoves(String currentPosition, Dictionary<String, Piece> occupiedPositions)
         {
             throw new NotImplementedException();
         }

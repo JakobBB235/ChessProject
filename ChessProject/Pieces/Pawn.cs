@@ -32,11 +32,11 @@ namespace ChessProject.Pieces
             }
             else if (color == "b")
             {
-                //offsets.Add("0,1");
-                //offsets.Add("-1,1");
-                //offsets.Add("1,1");
-                //if (firstMove)
-                //    offsets.Add("0,2");
+                offsets.Add("0,-1");
+                if (firstMove)
+                    offsets.Add("0,-2");
+                offsets.Add("1,-1");
+                offsets.Add("-1,-1");
             }
             for(int i = 0; i < offsets.Count; i++)
             {

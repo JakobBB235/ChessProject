@@ -17,6 +17,7 @@ namespace ChessProject
         private Button firstClick;
         private List<String> possibleMoves;
         private Dictionary<String, Piece> occupiedPositions = new Dictionary<string, Piece>();
+        private bool programStarted = false;
 
         public void SetupOccupyPositions()
         {
@@ -55,16 +56,21 @@ namespace ChessProject
             occupiedPositions.Add("F7", new Pawn("b"));
             occupiedPositions.Add("G7", new Pawn("b"));
             occupiedPositions.Add("H7", new Pawn("b"));
+            Console.WriteLine("TEST");
         }
 
         private void MovePiece(Button b)
         {
+            Console.WriteLine("TEST4");
             var thePiece = b.Text.Split(' '); //might be empty?
             String color = thePiece[0];
+            Console.WriteLine("TEST5");
 
-            if((color == "w" && count%2 == 0) || (color == "b" && count%2 != 0) || b.Text == null) {
+            if ((color == "w" && count%2 == 0) || (color == "b" && count%2 != 0) || b.Text == "") { //b.Text == null
+                Console.WriteLine("TEST6");
                 if (firstClick == null)
                 {
+                    Console.WriteLine("TEST1");
                     firstClick = b;
                     Piece piece = occupiedPositions[b.Name];
                     possibleMoves = piece.FindPossibleMoves(b.Name, occupiedPositions);
@@ -72,9 +78,9 @@ namespace ChessProject
                     //TODO: color the available buttons
 
                 }
-                if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches. else if
-                    turnbox.Text = b.Text;// TEST
-
+                else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches. else if
+                    Console.WriteLine("TEST2");
+                    //turnbox.Text = b.Text;// TEST
 
                     b.Text = firstClick.Text;
                     firstClick.Text = null;
@@ -84,36 +90,42 @@ namespace ChessProject
                     //if (piece is Pawn)
                     //    piece.firstMove = false;//Need to set firstMove on pawn to false
 
-                    occupiedPositions.Add(firstClick.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
+                    occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
                     occupiedPositions.Remove(firstClick.Name); //remove old position
 
                     firstClick = null;
                     possibleMoves = null;
-                    
+
                     //Turn switch
+                    count++;
                     if (count % 2 == 0)
                         turnbox.Text = "White Turn";
                     else
-                        turnbox.Text = "Black Turn";
-                    count++;
+                        turnbox.Text = "Black Turn"; 
                 }
-                //else
-                //{
-                //    firstClick = null;
-                //    possibleMoves = null;
-                //}
-                else if (!possibleMoves.Contains(b.Name) && possibleMoves != null) //if a not valid button is clicked 
+                else
                 {
+                    Console.WriteLine("TEST");
                     firstClick = null;
                     possibleMoves = null;
                 }
+                //else if (!possibleMoves.Contains(b.Name) && possibleMoves != null) //if a not valid button is clicked 
+                //{
+                //    Console.WriteLine("TEST3");
+                //    firstClick = null;
+                //    possibleMoves = null;
+                //}
             }
         }
 
         public Form1()
         {
-            InitializeComponent();
-            SetupOccupyPositions();
+            if (!programStarted)
+            {
+                InitializeComponent();
+                SetupOccupyPositions();
+                programStarted = true;
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace ChessProject.Pieces
 {
     class Pawn : Piece
     {
-        public bool firstMove { get; } = true;
+        public bool firstMove { get; set; } = true;
 
         public Pawn(string color) : base(color)
         {
@@ -51,7 +51,6 @@ namespace ChessProject.Pieces
                         if (offsets[i] == "-1,1" || offsets[i] == "1,1") { //Pawn can only attack if enemy is present
                             try
                             {
-                            //Piece piece = occupiedPositions.Where(kvp => kvp.Key == resultConv) as Piece; //Has to throw KeyException
                                 Piece otherPiece = occupiedPositions[resultConv]; //throws exception if no piece on that position
                                 Piece piece = occupiedPositions[currentPosition]; //the piece about to be moved
                                 if (piece.color != otherPiece.color) //checking if otherPiece is an enemy

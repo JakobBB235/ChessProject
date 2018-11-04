@@ -66,56 +66,56 @@ namespace ChessProject
             var thePiece = b.Text.Split(' '); //might be empty?
             String color = thePiece[0];
             Console.WriteLine("TEST5");
-
-            if ((color == "w" && count%2 == 0) || (color == "b" && count%2 != 0) || (b.Text == "" && firstClick != null)) { //b.Text == null
-                Console.WriteLine("TEST6");
-                if (firstClick == null)
-                {
+      
+            Console.WriteLine("TEST6");
+            if (firstClick == null)
+            {
+                if ((color == "w" && count % 2 == 0) || (color == "b" && count % 2 != 0))
+                { 
                     Console.WriteLine("TEST1");
                     firstClick = b;
                     Piece piece = occupiedPositions[b.Name];
                     possibleMoves = piece.FindPossibleMoves(b.Name, occupiedPositions);
 
                     //TODO: color the available buttons
-
                 }
-                else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches
-                    Console.WriteLine("TEST2");
-                    //turnbox.Text = b.Text;// TEST
-
-                    b.Text = firstClick.Text;
-                    firstClick.Text = ""; //null
-
-                    Piece piece = occupiedPositions[firstClick.Name];
+            }
+            else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches
+                Console.WriteLine("TEST2");
                     
-                    //if (piece is Pawn)
-                    //    piece.firstMove = false;//Need to set firstMove on pawn to false
+                b.Text = firstClick.Text;
+                firstClick.Text = ""; //null
 
-                    occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
-                    occupiedPositions.Remove(firstClick.Name); //remove old position
+                //Check if game is won
+                if (thePiece[1] == "king" && color == "b")
+                    MessageBox.Show("White Won!");
+                else if (thePiece[1] == "king" && color == "w")
+                    MessageBox.Show("Black Won!");
 
-                    firstClick = null;
-                    possibleMoves = null;
+                Piece piece = occupiedPositions[firstClick.Name];
 
-                    //Turn switch
-                    count++;
-                    if (count % 2 == 0)
-                        turnbox.Text = "White Turn";
-                    else
-                        turnbox.Text = "Black Turn"; 
-                }
+                //if (piece is Pawn)
+                //    piece.firstMove = false;//Need to set firstMove on pawn to false
+
+                occupiedPositions.Remove(b.Name);//Remove enemy piece
+                occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
+                occupiedPositions.Remove(firstClick.Name); //remove old position
+
+                firstClick = null;
+                possibleMoves = null;
+
+                //Turn switch
+                count++;
+                if (count % 2 == 0)
+                    turnbox.Text = "White Turn";
                 else
-                {
-                    Console.WriteLine("TEST");
-                    firstClick = null;
-                    possibleMoves = null;
-                }
-                //else if (!possibleMoves.Contains(b.Name) && possibleMoves != null) //if a not valid button is clicked 
-                //{
-                //    Console.WriteLine("TEST3");
-                //    firstClick = null;
-                //    possibleMoves = null;
-                //}
+                    turnbox.Text = "Black Turn"; 
+            }
+            else
+            {
+                Console.WriteLine("TEST");
+                firstClick = null;
+                possibleMoves = null;
             }
         }
 

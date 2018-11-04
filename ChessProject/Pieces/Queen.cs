@@ -42,8 +42,8 @@ namespace ChessProject.Pieces
                         Piece otherPiece = occupiedPositions[resultConv]; //throws exception if no piece on that position
                         Piece piece = occupiedPositions[currentPosition]; //the piece about to be moved
 
-                        if (piece.color != otherPiece.color)
-                        { //checking if otherPiece is an enemy
+                        if (piece.color != otherPiece.color)//checking if otherPiece is an enemy
+                        { 
                             validPositions.Add(resultConv);
                             break;
                         }

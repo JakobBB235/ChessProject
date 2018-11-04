@@ -61,12 +61,13 @@ namespace ChessProject
 
         private void MovePiece(Button b)
         {
+            programStarted = true; //test
             Console.WriteLine("TEST4");
             var thePiece = b.Text.Split(' '); //might be empty?
             String color = thePiece[0];
             Console.WriteLine("TEST5");
 
-            if ((color == "w" && count%2 == 0) || (color == "b" && count%2 != 0) || b.Text == "") { //b.Text == null
+            if ((color == "w" && count%2 == 0) || (color == "b" && count%2 != 0) || (b.Text == "" && firstClick != null)) { //b.Text == null
                 Console.WriteLine("TEST6");
                 if (firstClick == null)
                 {
@@ -78,12 +79,12 @@ namespace ChessProject
                     //TODO: color the available buttons
 
                 }
-                else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches. else if
+                else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches
                     Console.WriteLine("TEST2");
                     //turnbox.Text = b.Text;// TEST
 
                     b.Text = firstClick.Text;
-                    firstClick.Text = null;
+                    firstClick.Text = ""; //null
 
                     Piece piece = occupiedPositions[firstClick.Name];
                     
@@ -130,7 +131,7 @@ namespace ChessProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //SetupOccupyPositions();
+            
         }
 
         private void A1_Click(object sender, EventArgs e)

@@ -46,29 +46,31 @@ namespace ChessProject.Pieces
                 String result = Convert.ToString((xAxis + xOffset) + "," + (yAxis + yOffset));
                 
                 var resultConv = ConvertPositionToLetterAndNumber(result);
-                if (resultConv != null) { 
+                if (resultConv != null) {
                     //if ((color == "w" && resultConv != "w") || (color == "b" && resultConv != "b")) { //error?
-                        if (offsets[i] == "-1,1" || offsets[i] == "1,1") { //Pawn can only attack if enemy is present
-                            try
-                            {
-                                Piece otherPiece = occupiedPositions[resultConv]; //throws exception if no piece on that position
-                                Piece piece = occupiedPositions[currentPosition]; //the piece about to be moved
-                                if (piece.color != otherPiece.color) //checking if otherPiece is an enemy
-                                    possibleMoves.Add(resultConv);
-                            }
-                            catch(KeyNotFoundException e)
-                            {
-
-                            }
+                    // Make pawns not able to firstmove 2 if an enemy is standing in front
+                    if (offsets[i] == "-1,1" || offsets[i] == "1,1" || offsets[i] == "1,-1" || offsets[i] == "-1,-1") { //Pawn can only attack if enemy is present
+                        try
+                        {                         
+                            Piece otherPiece = occupiedPositions[resultConv]; //throws exception if no piece on that position
+                            Console.WriteLine("TestAttack");
+                            Piece piece = occupiedPositions[currentPosition]; //the piece about to be moved
+                            if (piece.color != otherPiece.color) //checking if otherPiece is an enemy
+                                possibleMoves.Add(resultConv);
                         }
-                        else
+                        catch(KeyNotFoundException e)
                         {
-                            possibleMoves.Add(resultConv);
+
                         }
+                    }
+                    else
+                    {
+                        possibleMoves.Add(resultConv);
+                    }
                     //}
                 }
             }
-
+            
             return possibleMoves;
         }
     }

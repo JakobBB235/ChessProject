@@ -56,7 +56,17 @@ namespace ChessProject
             occupiedPositions.Add("F7", new Pawn("b"));
             occupiedPositions.Add("G7", new Pawn("b"));
             occupiedPositions.Add("H7", new Pawn("b"));
+
+            DecolorButtons();
             Console.WriteLine("TEST");
+        }
+
+        public void DecolorButtons()
+        {
+            foreach (var button in this.Controls.OfType<Button>())
+            {
+                button.BackColor = Color.White;
+            }
         }
 
         private void MovePiece(Button b)
@@ -78,6 +88,11 @@ namespace ChessProject
                     possibleMoves = piece.FindPossibleMoves(b.Name, occupiedPositions);
 
                     //TODO: color the available buttons
+                    foreach (var button in this.Controls.OfType<Button>())
+                    {
+                        if (possibleMoves.Contains(button.Name))
+                            button.BackColor = Color.Green;
+                    }
                 }
             }
             else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches
@@ -86,11 +101,13 @@ namespace ChessProject
                 b.Text = firstClick.Text;
                 firstClick.Text = ""; //null
 
-                //Check if game is won
-                if (thePiece[1] == "king" && color == "b")
-                    MessageBox.Show("White Won!");
-                else if (thePiece[1] == "king" && color == "w")
-                    MessageBox.Show("Black Won!");
+                //if(b.Text != null) { //!= ""
+                //    //Check if game is won
+                //    if (thePiece[1] == "king" && color == "b")
+                //        MessageBox.Show("White Won!");
+                //    else if (thePiece[1] == "king" && color == "w")
+                //        MessageBox.Show("Black Won!");
+                //}
 
                 Piece piece = occupiedPositions[firstClick.Name];
 
@@ -104,6 +121,8 @@ namespace ChessProject
                 firstClick = null;
                 possibleMoves = null;
 
+                DecolorButtons();
+
                 //Turn switch
                 count++;
                 if (count % 2 == 0)
@@ -116,6 +135,7 @@ namespace ChessProject
                 Console.WriteLine("TEST");
                 firstClick = null;
                 possibleMoves = null;
+                DecolorButtons();
             }
         }
 

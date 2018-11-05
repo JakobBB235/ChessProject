@@ -49,26 +49,6 @@ namespace ChessProject.Pieces
                 
                 var resultConv = ConvertPositionToLetterAndNumber(result);
                 if (resultConv != null) {
-                    // Make pawns not able to firstmove 2 if an enemy is standing in front
-                    //if (offsets[i] == "-1,1" || offsets[i] == "1,1" || offsets[i] == "1,-1" || offsets[i] == "-1,-1") { //Pawn can only attack if enemy is present
-                    //    try
-                    //    {                         
-                    //        Piece otherPiece = occupiedPositions[resultConv]; //throws exception if no piece on that position
-                    //        Console.WriteLine("TestAttack");
-                    //        Piece piece = occupiedPositions[currentPosition]; //the piece about to be moved
-                    //        if (piece.color != otherPiece.color) //checking if otherPiece is an enemy
-                    //            possibleMoves.Add(resultConv);
-                    //    }
-                    //    catch(KeyNotFoundException e)
-                    //    {
-
-                    //    }
-                    //}
-                    //else
-                    //{
-                    //    possibleMoves.Add(resultConv);
-                    //}
- 
                     try
                     {
                         Piece otherPiece = occupiedPositions[resultConv]; //throws exception if no piece on that position
@@ -93,18 +73,6 @@ namespace ChessProject.Pieces
                     }
                     catch (KeyNotFoundException e)//means button has no piece on it
                     {
-                        //continue;
-
-                        //if (!firstFound && (offsets[i] == "0,2" || offsets[i] == "0,-2")) { 
-                        //    Console.WriteLine("TestMoveFirstFound" + offsets[i]); 
-                        //    possibleMoves.Add(resultConv);
-                        //}
-                        //else if (offsets[i] != "0,2" || offsets[i] != "0,-2")//firstFound && (
-                        //{
-                        //    Console.WriteLine("TestMove" + offsets[i]);
-                        //    possibleMoves.Add(resultConv);
-                        //}
-
                         if(offsets[i] == "0,2" || offsets[i] == "0,-2")
                         {
                             if (!firstFound) {

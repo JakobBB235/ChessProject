@@ -58,7 +58,6 @@ namespace ChessProject
             occupiedPositions.Add("H7", new Pawn("b"));
 
             DecolorButtons();
-            Console.WriteLine("TEST");
         }
 
         public void DecolorButtons()
@@ -71,23 +70,19 @@ namespace ChessProject
 
         private void MovePiece(Button b)
         {
-            programStarted = true; //test
-            Console.WriteLine("TEST4");
+            programStarted = true; //might not be needed
             var thePiece = b.Text.Split(' '); //might be empty?
             String color = thePiece[0];
-            Console.WriteLine("TEST5");
-      
-            Console.WriteLine("TEST6");
+
             if (firstClick == null)
             {
                 if ((color == "w" && count % 2 == 0) || (color == "b" && count % 2 != 0))
                 { 
-                    Console.WriteLine("TEST1");
                     firstClick = b;
                     Piece piece = occupiedPositions[b.Name];
                     possibleMoves = piece.FindPossibleMoves(b.Name, occupiedPositions);
 
-                    //TODO: color the available buttons
+                    //color the available buttons
                     foreach (var button in this.Controls.OfType<Button>())
                     {
                         if (possibleMoves.Contains(button.Name))
@@ -96,24 +91,21 @@ namespace ChessProject
                 }
             }
             else if (possibleMoves.Contains(b.Name)){ //Move is made. Turn switches
-                Console.WriteLine("TEST2");
-                    
+                //Win condition. Check if game is won
+                if (b.Text != "")
+                { //!= null
+                    if (thePiece[1] == "king" && color == "b")
+                        MessageBox.Show("White Won!");
+                    else if (thePiece[1] == "king" && color == "w")
+                        MessageBox.Show("Black Won!");
+                }
+
                 b.Text = firstClick.Text;
                 firstClick.Text = ""; //null
 
-
-                //if(b.Text != null) { //!= ""
-                //    //Check if game is won
-                //    if (thePiece[1] == "king" && color == "b")
-                //        MessageBox.Show("White Won!");
-                //    else if (thePiece[1] == "king" && color == "w")
-                //        MessageBox.Show("Black Won!");
-                //}
-
                 Piece piece = occupiedPositions[firstClick.Name];
-
-                //NEW
                 occupiedPositions.Remove(b.Name);//Remove enemy piece
+
                 if (piece is Pawn) { 
                     Pawn thePawn = (Pawn)piece;
                     thePawn.firstMove = false;//Need to set firstMove on pawn to false
@@ -123,7 +115,6 @@ namespace ChessProject
                 {
                     occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
                 }
-                //NEWEND
 
                 //occupiedPositions.Remove(b.Name);//Remove enemy piece
                 //occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
@@ -131,7 +122,6 @@ namespace ChessProject
 
                 firstClick = null;
                 possibleMoves = null;
-
                 DecolorButtons();
 
                 //Turn switch
@@ -147,7 +137,6 @@ namespace ChessProject
             }
             else
             {
-                Console.WriteLine("TEST");
                 firstClick = null;
                 possibleMoves = null;
                 DecolorButtons();

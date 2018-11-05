@@ -93,6 +93,8 @@
             this.H2 = new System.Windows.Forms.Button();
             this.H1 = new System.Windows.Forms.Button();
             this.turnbox = new System.Windows.Forms.TextBox();
+            this.colorBox = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.colorBox)).BeginInit();
             this.SuspendLayout();
             // 
             // A1
@@ -711,11 +713,22 @@
             this.turnbox.TabIndex = 64;
             this.turnbox.Text = "White Turn";
             // 
+            // colorBox
+            // 
+            this.colorBox.BackColor = System.Drawing.Color.White;
+            this.colorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.colorBox.Location = new System.Drawing.Point(646, 285);
+            this.colorBox.Name = "colorBox";
+            this.colorBox.Size = new System.Drawing.Size(100, 50);
+            this.colorBox.TabIndex = 65;
+            this.colorBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 572);
+            this.Controls.Add(this.colorBox);
             this.Controls.Add(this.turnbox);
             this.Controls.Add(this.H8);
             this.Controls.Add(this.H7);
@@ -784,6 +797,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.colorBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -856,6 +870,7 @@
         private System.Windows.Forms.Button H2;
         private System.Windows.Forms.Button H1;
         private System.Windows.Forms.TextBox turnbox;
+        private System.Windows.Forms.PictureBox colorBox;
     }
 }
 

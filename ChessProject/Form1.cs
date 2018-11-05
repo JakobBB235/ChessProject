@@ -125,10 +125,14 @@ namespace ChessProject
 
                 //Turn switch
                 count++;
-                if (count % 2 == 0)
+                if (count % 2 == 0) { 
                     turnbox.Text = "White Turn";
-                else
-                    turnbox.Text = "Black Turn"; 
+                    colorBox.BackColor = Color.White;
+                }
+                else { 
+                    turnbox.Text = "Black Turn";
+                    colorBox.BackColor = Color.Black;
+                }
             }
             else
             {

@@ -94,6 +94,7 @@
             this.H1 = new System.Windows.Forms.Button();
             this.turnbox = new System.Windows.Forms.TextBox();
             this.colorBox = new System.Windows.Forms.PictureBox();
+            this.restartButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.colorBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,6 +110,7 @@
             // 
             // A2
             // 
+            this.A2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.A2.Location = new System.Drawing.Point(65, 425);
             this.A2.Name = "A2";
             this.A2.Size = new System.Drawing.Size(64, 64);
@@ -165,6 +167,7 @@
             // 
             // A8
             // 
+            this.A8.ForeColor = System.Drawing.SystemColors.ControlText;
             this.A8.Location = new System.Drawing.Point(65, 5);
             this.A8.Name = "A8";
             this.A8.Size = new System.Drawing.Size(64, 64);
@@ -723,11 +726,24 @@
             this.colorBox.TabIndex = 65;
             this.colorBox.TabStop = false;
             // 
+            // restartButton
+            // 
+            this.restartButton.BackColor = System.Drawing.Color.Red;
+            this.restartButton.ForeColor = System.Drawing.Color.White;
+            this.restartButton.Location = new System.Drawing.Point(646, 425);
+            this.restartButton.Name = "restartButton";
+            this.restartButton.Size = new System.Drawing.Size(100, 64);
+            this.restartButton.TabIndex = 66;
+            this.restartButton.Text = "Restart Game";
+            this.restartButton.UseVisualStyleBackColor = false;
+            this.restartButton.Click += new System.EventHandler(this.restartButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 572);
+            this.Controls.Add(this.restartButton);
             this.Controls.Add(this.colorBox);
             this.Controls.Add(this.turnbox);
             this.Controls.Add(this.H8);
@@ -871,6 +887,7 @@
         private System.Windows.Forms.Button H1;
         private System.Windows.Forms.TextBox turnbox;
         private System.Windows.Forms.PictureBox colorBox;
+        private System.Windows.Forms.Button restartButton;
     }
 }
 

@@ -57,7 +57,7 @@ namespace ChessProject
             occupiedPositions.Add("G7", new Pawn("b"));
             occupiedPositions.Add("H7", new Pawn("b"));
 
-            DecolorButtons();
+            DecolorButtons();            
         }
 
         public void DecolorButtons()
@@ -65,7 +65,58 @@ namespace ChessProject
             foreach (var button in this.Controls.OfType<Button>())
             {
                 button.BackColor = Color.White;
+                //button.BackColor = Color.Gray;
             }
+            restartButton.BackColor = Color.Red;
+        }
+        
+        public void RestartGame() {
+            //Reset dictionary
+            occupiedPositions.Clear();
+            SetupOccupyPositions();
+
+            //Clear all button text
+            foreach (var button in this.Controls.OfType<Button>())
+            {
+                button.Text = "";
+            }
+            restartButton.Text = "Restart Game";
+
+            //Reset white side text
+            A1.Text = "w rook";
+            B1.Text = "w knight";
+            C1.Text = "w bishop";
+            D1.Text = "w king";
+            E1.Text = "w queen";
+            F1.Text = "w bishop";
+            G1.Text = "w knight";
+            H1.Text = "w rook";
+            A2.Text = "w pawn";
+            B2.Text = "w pawn";
+            C2.Text = "w pawn";
+            D2.Text = "w pawn";
+            E2.Text = "w pawn";
+            F2.Text = "w pawn";
+            G2.Text = "w pawn";
+            H2.Text = "w pawn";
+
+            //Reset black side text
+            A8.Text = "b rook";
+            B8.Text = "b knight";
+            C8.Text = "b bishop";
+            D8.Text = "b king";
+            E8.Text = "b queen";
+            F8.Text = "b bishop";
+            G8.Text = "b knight";
+            H8.Text = "b rook";
+            A7.Text = "b pawn";
+            B7.Text = "b pawn";
+            C7.Text = "b pawn";
+            D7.Text = "b pawn";
+            E7.Text = "b pawn";
+            F7.Text = "b pawn";
+            G7.Text = "b pawn";
+            H7.Text = "b pawn";
         }
 
         private void MovePiece(Button b)
@@ -100,6 +151,7 @@ namespace ChessProject
                         MessageBox.Show("Black Won!");
                 }
 
+                // "Move" the piece 
                 b.Text = firstClick.Text;
                 firstClick.Text = ""; //null
 
@@ -476,6 +528,11 @@ namespace ChessProject
         private void H8_Click(object sender, EventArgs e)
         {
             MovePiece((Button)sender);
+        }
+
+        private void restartButton_Click(object sender, EventArgs e)
+        {
+            RestartGame();
         }
     }
 }

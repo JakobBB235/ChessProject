@@ -101,6 +101,7 @@ namespace ChessProject
                 b.Text = firstClick.Text;
                 firstClick.Text = ""; //null
 
+
                 //if(b.Text != null) { //!= ""
                 //    //Check if game is won
                 //    if (thePiece[1] == "king" && color == "b")
@@ -111,11 +112,21 @@ namespace ChessProject
 
                 Piece piece = occupiedPositions[firstClick.Name];
 
-                //if (piece is Pawn)
-                //    piece.firstMove = false;//Need to set firstMove on pawn to false
-
+                //NEW
                 occupiedPositions.Remove(b.Name);//Remove enemy piece
-                occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
+                if (piece is Pawn) { 
+                    Pawn thePawn = (Pawn)piece;
+                    thePawn.firstMove = false;//Need to set firstMove on pawn to false
+                    occupiedPositions.Add(b.Name, thePawn);// "Move" the piece by adding it to the dictionary with new position as key
+                }
+                else
+                {
+                    occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
+                }
+                //NEWEND
+
+                //occupiedPositions.Remove(b.Name);//Remove enemy piece
+                //occupiedPositions.Add(b.Name, piece);// "Move" the piece by adding it to the dictionary with new position as key
                 occupiedPositions.Remove(firstClick.Name); //remove old position
 
                 firstClick = null;

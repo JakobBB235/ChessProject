@@ -532,7 +532,13 @@ namespace ChessProject
 
         private void restartButton_Click(object sender, EventArgs e)
         {
-            RestartGame();
+            var confirmResult = MessageBox.Show("Are you sure you want to restart the game?",
+                                                "Confirm Restart",
+                                                MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                RestartGame();
+            }
         }
     }
 }
